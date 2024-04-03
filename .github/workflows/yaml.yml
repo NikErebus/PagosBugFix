@@ -1,0 +1,32 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install SSH client
+        run: sudo apt-get install openssh-client
+
+      - name: Install necessary packages
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            sudo yum install -y nodejs npm git
+            sudo mkdir -p /opt/nombreDeSuDirectorio
+            sudo rm -rf /opt/nombreDeSuDirectorio
+            sudo git clone https://${{ secrets.GH_TOKEN }}@github.com/usuario/repo /opt/nombreDeSuDirectorio
+            cd /opt/nombreDeSuDirectorio
+            sudo npm install -g express pm2
+            sudo pm2 start app.js
+            sudo pm2 save
+            sudo pm2 startup
