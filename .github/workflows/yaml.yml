@@ -24,7 +24,7 @@ jobs:
             sudo yum install -y nodejs npm git
             sudo mkdir -p /opt/pagos
             sudo rm -rf /opt/pagos
-            sudo git clone https://${{ secrets.GH_TOKEN }}@github.com/NikErebus/PagosBugFix.git /opt/pagos
+            sudo git clone https://${{ secrets.GH_TOKEN }}@github.com/NikErebus/PagosBugFix.git 
             cd /opt/pagos
             sudo npm install -g express pm2
             sudo pm2 start app.js
