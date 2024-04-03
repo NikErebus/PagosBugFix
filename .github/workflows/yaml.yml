@@ -20,13 +20,14 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          script: |
+                   script: |
             sudo yum install -y nodejs npm git
             sudo mkdir -p /opt/nombreDeSuDirectorio
             sudo rm -rf /opt/nombreDeSuDirectorio
-            sudo git clone https://${{ secrets.GH_TOKEN }}@github.com/usuario/repo /opt/nombreDeSuDirectorio
+            sudo git clone https://***@github.com/usuario/repo /opt/nombreDeSuDirectorio
             cd /opt/nombreDeSuDirectorio
             sudo npm install -g express pm2
             sudo pm2 start app.js
             sudo pm2 save
             sudo pm2 startup
+
