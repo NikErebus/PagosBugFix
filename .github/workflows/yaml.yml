@@ -20,7 +20,7 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
-                   script: |
+                   script:
             sudo yum install -y nodejs npm git
             sudo mkdir -p /opt/pagos
             sudo rm -rf /opt/pagos
