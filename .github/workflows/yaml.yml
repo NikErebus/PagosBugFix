@@ -22,9 +22,9 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
                    script: |
             sudo yum install -y nodejs npm git
-            sudo mkdir -p /opt/nombreDeSuDirectorio
-            sudo rm -rf /opt/nombreDeSuDirectorio
-            sudo git clone https://***@github.com/usuario/repo /opt/nombreDeSuDirectorio
+            sudo mkdir -p /opt/pagos
+            sudo rm -rf /opt/pagos
+            sudo git clone https://${ secrets.GH_TOKEN }}@github.com/NikErebus/PagosBugFix.git
             cd /opt/nombreDeSuDirectorio
             sudo npm install -g express pm2
             sudo pm2 start app.js
