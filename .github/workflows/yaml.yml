@@ -20,12 +20,12 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
-                   script:
+          script: |
             sudo yum install -y nodejs npm git
             sudo mkdir -p /opt/pagos
             sudo rm -rf /opt/pagos
-            sudo git clone https://${ secrets.GH_TOKEN }}@github.com/NikErebus/PagosBugFix.git
-            cd /opt/nombreDeSuDirectorio
+            sudo git clone https://${{ secrets.GH_TOKEN }}@github.com/NikErebus/PagosBugFix.git /opt/pagos
+            cd /opt/pagos
             sudo npm install -g express pm2
             sudo pm2 start app.js
             sudo pm2 save
